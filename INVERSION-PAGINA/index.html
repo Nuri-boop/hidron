@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIDRON - Riego y Fumigación con Drones</title>
+    <style>
+        /* ================================================= */
+        /* === ESTILOS CSS MEJORADOS (DISEÑO) ============= */
+        /* ================================================= */
+        :root {
+            --color-principal: #006400; /* Verde Oscuro */
+            --color-secundario: #4CAF50; /* Verde Brillante */
+            --color-fondo: #f9f9f9;
+            --color-texto: #333;
+            --color-claro: #ffffff;
+            --color-resaltado: #FFD700; /* Dorado para el eslogan */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--color-principal);
+            color: var(--color-claro);
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            display: none; 
+        }
+
+        /* Estilos para el Logo */
+        .header-logo {
+            max-width: 200px; /* Ajusta el tamaño del logo */
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el Slogan */
+        .header-slogan {
+            font-size: 1.2em;
+            font-style: italic;
+            color: var(--color-resaltado); 
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* NAVEGACIÓN (CON CLASE PARA JS) */
+        nav {
+            background-color: var(--color-secundario);
+            margin: 0;
+            transition: all 0.3s;
+        }
+
+        /* Estilo para el menú fijo/sticky aplicado por JS */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-claro);
+            padding: 15px 25px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--color-principal);
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        h2 {
+            color: var(--color-principal);
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        /* SECCIÓN HERO */
+        .hero {
+            background: var(--color-claro);
+            text-align: center;
+            padding: 60px 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--color-secundario);
+        }
+
+        /* TARJETAS DE SERVICIO */
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px; 
+        }
+
+        .service-card {
+            background: var(--color-claro);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 20px); 
+            min-width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-card h3 {
+            color: var(--color-secundario);
+            margin-top: 0;
+        }
+
+        /* CONTACTO */
+        #contacto {
+            text-align: center;
+            padding: 40px;
+            background-color: #e8f5e9; 
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        #contacto p {
+            margin: 10px 0;
+        }
+        
+        #contacto a {
+            color: var(--color-principal); 
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        #contacto a:hover {
+            color: var(--color-secundario);
+        }
+
+        /* Estilo para la imagen del QR */
+        .qr-code-img {
+            max-width: 150px; /* Limita el tamaño del QR para que no sea gigante */
+            height: auto;
+            display: block; /* Para que tome su propio espacio */
+            margin: 10px auto 0 auto; /* Centrarlo y añadir margen */
+        }
+
+
+        /* FOOTER */
+        footer {
+            background-color: var(--color-texto);
+            color: var(--color-claro);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        /* MEDIA QUERIES para móviles */
+        @media (max-width: 768px) {
+            .service-card {
+                width: 100%; 
+            }
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        
+        <img src="hidron_logo .jpg" alt="Logo de HIDRON" class="header-logo">
+        
+        <p class="header-slogan">Sembramos Innovación, Cosechamos Futuro</p>
+    </header>
+
+    <nav id="mainNav">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="inicio" class="hero">
+            <h2>Revolucionando la Agricultura con Drones</h2>
+            <p>En **HIDRON**, utilizamos tecnología de drones de última generación para optimizar el cuidado de tus cultivos, asegurando una aplicación precisa y eficiente de recursos. Somos pioneros en la gestión aérea agrícola.</p>
+            <p style="font-weight: bold; color: var(--color-secundario);">¡Menos desperdicio, mejores cosechas garantizadas!</p>
+        </section>
+        
+        <section id="servicios">
+            <h2>Nuestros Servicios de Precisión</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Servicio de Riego Inteligente 🚿</h3>
+                    <p>Aplicamos la cantidad exacta de agua donde se necesita, gracias al análisis multiespectral y la teledetección. **Ahorra hasta un 30% en consumo de agua**.</p>
+                    <ul>
+                        <li>Mapeo de zonas de estrés hídrico.</li>
+                        <li>Análisis de humedad en tiempo real.</li>
+                        <li>Aplicación volumétrica controlada.</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Fumigación de Precisión ☣️</h3>
+                    <p>Administramos tratamientos fitosanitarios con exactitud milimétrica. Reducimos la deriva y aseguramos que solo las áreas afectadas reciban el tratamiento.</p>
+                    <ul>
+                        <li>Detección temprana de plagas y enfermedades.</li>
+                        <li>Tratamientos focalizados con GPS.</li>
+                        <li>Seguridad operativa certificada.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Hablemos de tu Campo</h2>
+            <p>¿Interesado en implementar la tecnología HIDRON? Contáctanos y recibe una cotización personalizada.</p>
+            
+            <p>
+                📞 Teléfono: <a href="tel:3115450948">311 545 0948</a>
+            </p>
+            <p>
+                📧 Correo Electrónico: <a href="mailto:hidron2025@gmail.com">hidron2025@gmail.com</a>
+            </p>
+            
+            <p style="font-weight: bold;">
+                Síguenos en Instagram:
+                <a href="https://www.instagram.com/hirdron_industries" target="_blank">
+                    <img src="insta.jpg" alt="Código QR de Instagram @HIDRON_INDUSTRIES" class="qr-code-img">
+                </a>
+            </p>
+            </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 HIDRON. Todos los derechos reservados. | Tecnología al servicio del agro.</p>
+    </footer>
+
+    <script>
+        // CÓDIGO JAVASCRIPT PARA EL MENÚ STICKY
+        var navbar = document.getElementById("mainNav");
+        var sticky = navbar.offsetTop; 
+
+        function stickyNavbar() {
+            if (window.scrollY >= sticky) {
+                navbar.classList.add("sticky");
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+        window.onscroll = function() {
+            stickyNavbar();
+        };
+    </script>
+
+</body>
+</html>
